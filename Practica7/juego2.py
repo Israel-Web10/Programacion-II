@@ -1,5 +1,4 @@
 import random
-
 class juego2:
     def __init__(self):
         self.numeroDeVidas = 3
