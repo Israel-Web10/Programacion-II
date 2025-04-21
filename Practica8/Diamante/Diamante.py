@@ -1,5 +1,5 @@
 class A:
-    def _init_(self, x, z):
+    def __init__(self, x, z):
         self.x = x
         self.z = z
     def incrementaXZ(self):
@@ -7,8 +7,11 @@ class A:
         self.z += 1
     def incrementaZ(self):
         self.z += 1
+    def __str__(self):
+        return f"A(x={self.x}, z={self.z})"
+
 class B:
-    def _init_(self, y, z):
+    def __init__(self, y, z):
         self.y = y
         self.z = z
     def incrementaYZ(self):
@@ -16,11 +19,25 @@ class B:
         self.z += 1
     def incrementaZ(self):
         self.z += 1
+    def __str__(self):
+        return f"B(y={self.y}, z={self.z})"
+
 class D(A, B):
-    def _init_(self, x, y, z):
-        A._init_(self, x, z)
-        B._init_(self, y, z)
+    def __init__(self, x, y, z):
+        A.__init__(self, x, z)
+        B.__init__(self, y, z)
     def incrementaXYZ(self):
         self.x += 1
         self.y += 1
         self.z += 1
+    def __str__(self):
+        return f"D(x={self.x}, y={self.y}, z={self.z})"
+a = A(6, 5) 
+b = B(2, 9)
+d = D(5, 6, 7)
+a.incrementaXZ()
+b.incrementaYZ()
+d.incrementaXYZ()
+print(a)  
+print(b)  
+print(d)  
