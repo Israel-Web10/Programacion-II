@@ -20,8 +20,9 @@ class FigurasApp:
 
         figuras = [None] * 5
         for i in range(len(figuras)):
-            tipo = random.randint(1, 2) 
-            valor = random.uniform(1, 11) 
+            tipo = random.randint(1, 2)  # 1 para Cuadrado, 2 para Circulo
+            valor = random.uniform(1, 11)  # Valor aleatorio entre 1 y 11
+
             if tipo == 1:
                 figuras[i] = Cuadrado(valor)
             else:
