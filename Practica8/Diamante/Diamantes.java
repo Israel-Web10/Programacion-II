@@ -1,3 +1,4 @@
+package Practica8.Diamante;
 public class Diamantes {
     
 
