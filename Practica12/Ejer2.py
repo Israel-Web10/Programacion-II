@@ -1,21 +1,22 @@
-class MotorViejo:
+class PlanAntiguo:
     def __init__(self, nombre: str):
         self.nombre = nombre
-    def arranque(self):
-        return f"{self.nombre} arrancado"
-class Vehiculo:
-    def encender(self):
+    def ejecutar(self):
+        return f"{self.nombre} Cursando plan antiguo"
+class Nuevoplan:
+    def iniciar(self):
         pass
-class Adaptador(Vehiculo):
-    def __init__(self, motor_viejo: MotorViejo):
-        self.motor = motor_viejo  # referencia al objeto adaptado
-    def encender(self):
-        return self.motor.arranque()
-def cliente_usa(vehiculo: Vehiculo):
-    print(vehiculo.encender())
+class AdaptadorSistema(Nuevoplan):
+    def __init__(self, sistema_antiguo: PlanAntiguo):
+        self.sistema = sistema_antiguo  
+    def iniciar(self):
+        return self.sistema.ejecutar()
 
-motor = MotorViejo("Motor viejo modelo A")
-auto_usable = Adaptador(motor)
-cliente_usa(auto_usable)
+def darSis(sistema: Nuevoplan):
+    print(sistema.iniciar())
+class Main:
+    sis = PlanAntiguo("Sistema de gestión de Materias: ")
+    siscompat = AdaptadorSistema(sis)
+    darSis(siscompat)
 #Ventaja general:Permite que clases con interfaces incompatibles trabajen juntas sin modificar su código original.
 #Ventaja de uso en la práctica:Facilita la integración de componentes antiguos o de terceros en sistemas nuevos.

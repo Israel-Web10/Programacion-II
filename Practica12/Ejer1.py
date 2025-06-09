@@ -1,29 +1,32 @@
-#patrones creacionales
-class Producto:
-    def __init__(self, a, b):
-        self.a = a
-        self.b = b
-
-    def operar(self):
+# Patrones creacionales 
+class Materia:
+    def __init__(self, nombre, nota):
+        self.nombre = nombre
+        self.nota = nota
+    def descr(self):
         pass
-class Suma(Producto):
-    def operar(self):
-        return f"Suma realizada: {self.a + self.b}"
-class Resta(Producto):
-    def operar(self):
-        return f"Resta realizada: {self.a - self.b}"
-class Fabrica:
-    def crear_producto(self, tipo, a, b):
-        if tipo == "suma":
-            return Suma(a, b)
-        elif tipo == "resta":
-            return Resta(a, b)
+class Obligatoria(Materia):
+    def descr(self):
+        return f"Materia Tomada: {self.nombre}, Nota: {self.nota}"
+class Optativa(Materia):
+    def descr(self):
+        return f"Materia optativa: {self.nombre}, Nota: {self.nota}"
+class FabricaMaterias:
+    def creamat(self, tipo, nombre, nota):
+        tipo = tipo.lower()
+        if tipo == "obligatoria":
+            return Obligatoria(nombre, nota)
+        elif tipo == "optativa":
+            return Optativa(nombre, nota)
         else:
-            raise ValueError("Tipo desconocido")
-f = Fabrica()
-p = f.crear_producto("suma", 10, 5)
-print(p.operar())
-#ventaja:Fabricacrea objetos Sumao Restasin que el cliente necesite saber cómo se instancian.
-#Puede agregar fácilmente una clase Multiplicaciony solo modificar la fábrica, sin tocar el código que la usa.
+            raise ValueError("Materia Indecisa")
+class Main:
+    fabrica = FabricaMaterias()
+    materia = fabrica.creamat("obligatoria", "programacion 2", 66)
+    print(materia.descr())
+
+    
+#ventaja:Fabricacrea objetos Suma,resta sin saber cómo se instancian.
+#Puede agregar fácilmente una clase Multiplicacion y solo modificar la fábrica
 
 
